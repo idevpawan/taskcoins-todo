@@ -8,7 +8,7 @@ type TButton = {
 
 export default function Button(props: TButton) {
   return (
-    <button className={`${props.className}`} onClick={() => props.onClick}>
+    <button className={`${props.className}`} onClick={props.onClick}>
       {props.title}
     </button>
   );
