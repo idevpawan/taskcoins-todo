@@ -1,9 +1,9 @@
-import Sidebar from "@/components/Sidebar";
+import Dashboard from "@/screens/Dashboard";
 
 export default function Home() {
   return (
     <main>
-      <Sidebar />
+      <Dashboard />
     </main>
   );
 }
