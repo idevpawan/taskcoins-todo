@@ -23,7 +23,7 @@ The TaskCoins platform is built using the following technologies:
 
 To run the TaskCoins platform locally, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/idevpawan/taskcoins.git`
+1. Clone the repository: `git clone https://github.com/idevpawan/taskcoins-todo.git`
 2. Install dependencies: `cd taskcoins && npm install`
 3. Start the development server: `npm run dev`
 5. Open your browser and visit `http://localhost:3000` to access the TaskCoins platform.
