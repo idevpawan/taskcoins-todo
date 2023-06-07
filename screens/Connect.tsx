@@ -2,20 +2,32 @@ import Loader from "@/components/Loader";
 import Button from "@/ui_components/Button";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import Web3 from "web3";
 
 const Connect = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
+
   const handleConnect = () => {
     setIsLoading(true);
 
     if (typeof window.ethereum !== "undefined") {
+      const web3 = new Web3(window.ethereum);
+
       window.ethereum
-        .request({ method: "eth_requestAccounts" })
-        .then((accounts: any) => {
-          const address = accounts[0];
-          dispatch({ type: "SET_ADDRESS", payload: address });
-          setIsLoading(false);
+        .enable()
+        .then(() => {
+          web3.eth.getAccounts((error, accounts) => {
+            if (error) {
+              setIsLoading(false);
+              console.error("Error connecting:", error);
+              return;
+            }
+
+            const address = accounts[0];
+            dispatch({ type: "SET_ADDRESS", payload: address });
+            setIsLoading(false);
+          });
         })
         .catch((error: any) => {
           setIsLoading(false);

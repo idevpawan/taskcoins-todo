@@ -8,6 +8,8 @@ type TInput = {
   inputClassName?: string;
   type?: string;
   id?: string;
+  value?: string; // Added value prop
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; // Modified type of onChange event
 };
 
 const Input = (props: TInput) => {
@@ -15,7 +17,7 @@ const Input = (props: TInput) => {
     <div className={`flex item-center gap-5 ${props.containerClassName}`}>
       {props.label && (
         <label
-          htmlFor="time"
+          htmlFor={props.id}
           className={`text-gray-300 ${props.labelClassName}`}
         >
           {props.label}
@@ -25,6 +27,8 @@ const Input = (props: TInput) => {
         id={props.id}
         className={` ${props.inputClassName}`}
         type={props.type}
+        value={props.value} // Added value prop
+        onChange={props.onChange}
         placeholder={props.placeholder}
       />
     </div>

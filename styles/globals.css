@@ -6,6 +6,22 @@ body {
   background-color: rgb(248 250 252);
 }
 
+/* Hide the scrollbar track */
+::-webkit-scrollbar {
+  width: 0.5em;
+  background-color: transparent;
+}
+
+/* Hide the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+/* Hide the scrollbar corner */
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
 /* calendar styling for sidebar */
 .react-calendar {
   width: 350px;

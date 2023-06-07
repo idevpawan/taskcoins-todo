@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiMenuAltRight } from "react-icons/bi";
 import Calendar from "react-calendar";
+import { useDispatch } from "react-redux";
 
 export default function Sidebar() {
-  const [value, onChange] = useState(new Date());
-  const handleDateChange = (e: any) => {
-    onChange(e);
-  };
+  const dispatch = useDispatch();
+  const [selectedDate, onDateChange] = useState(new Date());
+
+  useEffect(() => {
+    dispatch({ type: "SET_SELECTED_DATE", payload: selectedDate });
+  }, [dispatch, selectedDate]);
+
   function getTimeOfDay() {
     const currentHour = new Date().getHours();
 
@@ -27,16 +31,13 @@ export default function Sidebar() {
         <p className=" font-semibold text-light text-lg">
           {getTimeOfDay()}, John 👋
         </p>
-        <div className=" cursor-pointer">
-          <BiMenuAltRight />
-        </div>
       </div>
       <div className=" border my-4" /> {/** Divider */}
       <div>
         <Calendar
           className={" "}
-          onChange={(e) => handleDateChange(e)}
-          value={value}
+          onChange={(e: any) => onDateChange(e)}
+          value={selectedDate}
         />
       </div>
       <div className=" border my-4" /> {/** Divider */}
