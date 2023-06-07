@@ -12,6 +12,7 @@ type TTodoItem = {
 export default function TodoItem(props: TTodoItem) {
   const dispatch = useDispatch();
   const [isLineThrough, setIsLineThrough] = useState(false);
+
   function deleteTodoWithDelay(id: string) {
     setIsLineThrough(true);
     setTimeout(() => {
@@ -33,7 +34,6 @@ export default function TodoItem(props: TTodoItem) {
         </p>
       </div>
       <div className="flex items-center justify-between text-xs mt-2">
-        <p className="text-light cursor-pointer">Edit</p>
         <p className="text-xs text-gray-500">
           Reminder on {getTimeAMPM(props.reminder)}
         </p>

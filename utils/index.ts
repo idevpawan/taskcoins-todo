@@ -25,3 +25,11 @@ export function loadTodosFromLocalStorage() {
   const todos = JSON.parse(localStorage.getItem("todos") as string) || [];
   return todos;
 }
+
+export function timeToEpoch(time: string) {
+  const [hours, minutes] = time.split(":");
+  const date = new Date();
+  date.setHours(Number(hours));
+  date.setMinutes(Number(minutes));
+  return date.getTime().toString();
+}
