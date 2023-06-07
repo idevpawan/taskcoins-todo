@@ -1,5 +1,5 @@
 import Input from "@/ui_components/Input";
-import { getTimeAMPM } from "@/utils";
+import { getTimeAMPM, timeToEpoch } from "@/utils";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -12,6 +12,10 @@ type TTodoItem = {
 export default function TodoItem(props: TTodoItem) {
   const dispatch = useDispatch();
   const [isLineThrough, setIsLineThrough] = useState(false);
+
+  const currentTime = new Date().getTime().toString();
+
+  const expiredTodo = timeToEpoch(props.reminder) < currentTime;
 
   function deleteTodoWithDelay(id: string) {
     setIsLineThrough(true);
@@ -29,7 +33,11 @@ export default function TodoItem(props: TTodoItem) {
     <div className="w-full bg-white border rounded-xl p-4 relative mb-3">
       <div className="flex gap-5">
         <Input type="checkbox" onChange={() => deleteTodoWithDelay(props.id)} />
-        <p className={`text-gray-600 ${isLineThrough && "line-through"}`}>
+        <p
+          className={`text-gray-600 ${isLineThrough && "line-through"} ${
+            expiredTodo && "text-red-400"
+          }`}
+        >
           {props.title}
         </p>
       </div>
